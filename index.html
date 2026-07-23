@@ -3,11 +3,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>DubbelMaker</title>
+<title>🎾 DubbelMaker</title>
 
-<meta name="theme-color" content="#2e7d32">
+<meta name="theme-color" content="#1B5E20">
 
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
@@ -16,62 +16,67 @@
 
 <body>
 
-<header class="header">
+<header class="topbar">
+
     <h1>🎾 DubbelMaker</h1>
+
 </header>
 
 <main>
 
-<section id="homeScreen" class="screen">
+<!-- HOME -->
 
-    <button id="newSessionBtn" class="bigButton">
+<section id="home" class="page active">
+
+    <button id="btnPlay" class="menuButton">
         🎾 Nieuwe speelavond
     </button>
 
-    <button id="playersBtn" class="bigButton">
+    <button id="btnPlayers" class="menuButton">
         👥 Spelers beheren
     </button>
 
-    <button id="settingsBtn" class="bigButton">
+    <button id="btnSettings" class="menuButton">
         ⚙️ Instellingen
     </button>
 
 </section>
 
+<!-- SPELERS -->
 
-<section id="playersScreen" class="screen hidden">
+<section id="players" class="page">
 
     <h2>Spelers</h2>
 
     <div id="playersList"></div>
 
-    <div class="addPlayer">
+    <div class="row">
 
         <input
             id="playerName"
-            type="text"
             placeholder="Nieuwe speler">
 
-        <button id="addPlayerBtn">
-            ➕ Toevoegen
+        <button id="addPlayer">
+            ➕
         </button>
 
     </div>
 
-    <button id="backHome1" class="secondaryButton">
-        ⬅ Terug
+    <button class="backButton" data-home>
+        ⬅ Home
     </button>
 
 </section>
 
+<!-- SPEELAVOND -->
 
-<section id="sessionScreen" class="screen hidden">
+<section id="session" class="page">
 
     <h2>Aanwezigen</h2>
 
     <div id="attendanceList"></div>
 
-    <h3>Aantal banen</h3>
+    <h2>Aantal banen</h2>
 
     <select id="courtCount">
 
@@ -82,48 +87,68 @@
 
     </select>
 
-    <button id="generateBtn" class="bigButton">
+    <button id="generateTeams" class="menuButton">
+
         🎲 Maak teams
+
     </button>
 
-    <button id="backHome2" class="secondaryButton">
-        ⬅ Terug
+    <button class="backButton" data-home>
+
+        ⬅ Home
+
     </button>
 
 </section>
 
+<!-- UITSLAG -->
 
-<section id="resultScreen" class="screen hidden">
+<section id="result" class="page">
 
     <h2>Teamindeling</h2>
 
     <div id="matchesContainer"></div>
 
-    <button id="shareBtn" class="bigButton">
+    <button id="shareWhatsApp"
+            class="menuButton">
+
         📲 Deel via WhatsApp
+
     </button>
 
-    <button id="nextRoundBtn" class="bigButton">
-        ➡ Volgende ronde
+    <button id="nextRound"
+            class="menuButton">
+
+        🔄 Nieuwe ronde
+
     </button>
 
-    <button id="backHome3" class="secondaryButton">
+    <button class="backButton"
+            data-home>
+
         🏠 Home
+
     </button>
 
 </section>
 
+<!-- INSTELLINGEN -->
 
-<section id="settingsScreen" class="screen hidden">
+<section id="settings" class="page">
 
     <h2>Instellingen</h2>
 
     <p>
-        Deze pagina wordt in een volgende versie gevuld.
+
+        Deze pagina wordt later uitgebreid.
+
     </p>
 
-    <button id="backHome4" class="secondaryButton">
-        ⬅ Terug
+    <button class="backButton"
+            data-home>
+
+        ⬅ Home
+
     </button>
 
 </section>
@@ -136,4 +161,5 @@
 <script src="app.js"></script>
 
 </body>
+
 </html>
