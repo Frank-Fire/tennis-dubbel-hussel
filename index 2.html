@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DubbelMaker</title>
+
+<meta name="theme-color" content="#2e7d32">
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🎾 DubbelMaker</h1>
+</header>
+
+<main>
+
+<section id="homeScreen" class="screen">
+
+    <button id="newSessionBtn" class="bigButton">
+        🎾 Nieuwe speelavond
+    </button>
+
+    <button id="playersBtn" class="bigButton">
+        👥 Spelers beheren
+    </button>
+
+    <button id="settingsBtn" class="bigButton">
+        ⚙️ Instellingen
+    </button>
+
+</section>
+
+
+<section id="playersScreen" class="screen hidden">
+
+    <h2>Spelers</h2>
+
+    <div id="playersList"></div>
+
+    <div class="addPlayer">
+
+        <input
+            id="playerName"
+            type="text"
+            placeholder="Nieuwe speler">
+
+        <button id="addPlayerBtn">
+            ➕ Toevoegen
+        </button>
+
+    </div>
+
+    <button id="backHome1" class="secondaryButton">
+        ⬅ Terug
+    </button>
+
+</section>
+
+
+<section id="sessionScreen" class="screen hidden">
+
+    <h2>Aanwezigen</h2>
+
+    <div id="attendanceList"></div>
+
+    <h3>Aantal banen</h3>
+
+    <select id="courtCount">
+
+        <option value="1">1 baan</option>
+        <option value="2">2 banen</option>
+        <option value="3">3 banen</option>
+        <option value="4">4 banen</option>
+
+    </select>
+
+    <button id="generateBtn" class="bigButton">
+        🎲 Maak teams
+    </button>
+
+    <button id="backHome2" class="secondaryButton">
+        ⬅ Terug
+    </button>
+
+</section>
+
+
+<section id="resultScreen" class="screen hidden">
+
+    <h2>Teamindeling</h2>
+
+    <div id="matchesContainer"></div>
+
+    <button id="shareBtn" class="bigButton">
+        📲 Deel via WhatsApp
+    </button>
+
+    <button id="nextRoundBtn" class="bigButton">
+        ➡ Volgende ronde
+    </button>
+
+    <button id="backHome3" class="secondaryButton">
+        🏠 Home
+    </button>
+
+</section>
+
+
+<section id="settingsScreen" class="screen hidden">
+
+    <h2>Instellingen</h2>
+
+    <p>
+        Deze pagina wordt in een volgende versie gevuld.
+    </p>
+
+    <button id="backHome4" class="secondaryButton">
+        ⬅ Terug
+    </button>
+
+</section>
+
+</main>
+
+<script src="storage.js"></script>
+<script src="players.js"></script>
+<script src="matches.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

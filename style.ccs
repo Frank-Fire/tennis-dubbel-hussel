@@ -1,0 +1,230 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#1f7a38;
+    color:#222;
+}
+
+.header{
+    background:#146c2e;
+    color:white;
+    text-align:center;
+    padding:22px;
+    font-size:28px;
+    font-weight:bold;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.screen{
+    padding:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+.bigButton{
+
+    width:100%;
+    padding:18px;
+    margin-top:18px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#2e7d32;
+    color:white;
+
+    font-size:20px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.bigButton:active{
+    transform:scale(.98);
+}
+
+.secondaryButton{
+
+    width:100%;
+    padding:16px;
+
+    margin-top:18px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#e6e6e6;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.addPlayer{
+
+    margin-top:25px;
+
+    display:flex;
+    gap:10px;
+}
+
+.addPlayer input{
+
+    flex:1;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #ccc;
+
+    font-size:18px;
+}
+
+.addPlayer button{
+
+    padding:14px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2e7d32;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.playerCard{
+
+    background:white;
+
+    border-radius:14px;
+
+    margin-top:14px;
+
+    padding:16px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.playerButtons{
+
+    display:flex;
+
+    gap:8px;
+}
+
+.smallButton{
+
+    border:none;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.editButton{
+
+    background:#2196f3;
+
+    color:white;
+}
+
+.deleteButton{
+
+    background:#e53935;
+
+    color:white;
+}
+
+#attendanceList label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:white;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    margin-top:12px;
+
+    font-size:18px;
+}
+
+#attendanceList input{
+
+    width:22px;
+
+    height:22px;
+}
+
+#courtCount{
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    font-size:18px;
+}
+
+.matchCard{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    margin-top:16px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    box-shadow:0 3px 8px rgba(0,0,0,.1);
+}
+
+@media(min-width:700px){
+
+    main{
+
+        width:700px;
+
+        margin:auto;
+    }
+
+}
