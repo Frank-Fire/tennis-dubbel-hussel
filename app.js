@@ -1,289 +1,136 @@
 // app.js
-// Hoofdlogica DubbelMaker
+// Navigatie en basisfunctionaliteit
 
-
-let currentMatches = [];
-
-
-// scherm wisselen
-
-function showScreen(screenId){
+function showPage(pageId) {
 
     document
-    .querySelectorAll(".screen")
-    .forEach(screen=>{
-        screen.classList.add("hidden");
-    });
-
+        .querySelectorAll(".page")
+        .forEach(page => page.classList.remove("active"));
 
     document
-    .getElementById(screenId)
-    .classList.remove("hidden");
-
+        .getElementById(pageId)
+        .classList.add("active");
 }
 
 
+// ---------- Home knoppen ----------
 
-// aanwezigheid tonen
+document.getElementById("btnPlayers").addEventListener("click", () => {
 
-function renderAttendance(){
+    if (typeof renderPlayers === "function") {
+        renderPlayers();
+    }
 
-    const list =
-    document.getElementById(
-        "attendanceList"
-    );
+    showPage("players");
 
+});
 
-    if(!list) return;
+document.getElementById("btnPlay").addEventListener("click", () => {
 
+    if (typeof renderAttendance === "function") {
+        renderAttendance();
+    }
 
-    list.innerHTML="";
+    showPage("session");
 
+});
 
-    const players =
-    Storage.load("players",[]);
+document.getElementById("btnSettings").addEventListener("click", () => {
 
+    showPage("settings");
 
-    players.forEach(player=>{
-
-
-        const label =
-        document.createElement("label");
-
-
-        label.innerHTML = `
-
-        <input 
-        type="checkbox"
-        value="${player}">
-
-        ${player}
-
-        `;
+});
 
 
-        list.appendChild(label);
+// ---------- Home knoppen onderaan ----------
 
+document.querySelectorAll("[data-home]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        showPage("home");
 
     });
 
-}
+});
 
 
+// ---------- Teams maken ----------
 
-// teams maken
+document.getElementById("generateTeams").addEventListener("click", () => {
 
-function generateMatches(){
+    const selectedPlayers = [];
 
+    document
+        .querySelectorAll("#attendanceList input:checked")
+        .forEach(player => {
 
-    const selected =
-    [...document.querySelectorAll(
-        "#attendanceList input:checked"
-    )]
-    .map(input=>input.value);
+            selectedPlayers.push(player.value);
 
+        });
 
+    if (selectedPlayers.length < 4) {
 
-    const courts =
-    Number(
-        document.getElementById(
-            "courtCount"
-        ).value
-    );
-
-
-
-    if(selected.length < 4){
-
-        alert(
-        "Selecteer minimaal 4 spelers"
-        );
+        alert("Selecteer minimaal 4 spelers.");
 
         return;
 
     }
 
+    const courts = parseInt(
+        document.getElementById("courtCount").value
+    );
 
-
-    currentMatches =
-    createTeams(
-        selected,
+    const matches = createTeams(
+        selectedPlayers,
         courts
     );
 
+    showMatches(matches);
+
+    showPage("result");
+
+});
 
 
-    showMatches(
-        currentMatches
-    );
+// ---------- WhatsApp ----------
 
+document.getElementById("shareWhatsApp").addEventListener("click", () => {
 
-    showScreen(
-        "resultScreen"
-    );
+    let text = "🎾 DubbelMaker\n\n";
 
-}
+    document.querySelectorAll(".matchCard").forEach(card => {
 
-
-
-// WhatsApp delen
-
-function shareWhatsApp(){
-
-
-    let text =
-    "🎾 Tennisindeling\n\n";
-
-
-    currentMatches.forEach(match=>{
-
-        text +=
-        "Baan " +
-        match.court +
-        ":\n" +
-        match.team1 +
-        " 🆚 " +
-        match.team2 +
-        "\n\n";
+        text += card.innerText + "\n\n";
 
     });
-
-
 
     window.open(
         "https://wa.me/?text=" +
-        encodeURIComponent(text)
+        encodeURIComponent(text),
+        "_blank"
     );
 
-
-}
-
+});
 
 
-// start
+// ---------- Nieuwe ronde ----------
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
+document.getElementById("nextRound").addEventListener("click", () => {
 
-
-    // navigatie
-
-    document
-    .getElementById(
-        "playersBtn"
-    )
-    .onclick =
-    ()=>{
-        showScreen(
-            "playersScreen"
-        );
-    };
-
-
-
-    document
-    .getElementById(
-        "newSessionBtn"
-    )
-    .onclick =
-    ()=>{
-        renderAttendance();
-
-        showScreen(
-            "sessionScreen"
-        );
-    };
-
-
-
-    document
-    .getElementById(
-        "settingsBtn"
-    )
-    .onclick =
-    ()=>{
-        showScreen(
-            "settingsScreen"
-        );
-    };
-
-
-
-    document
-    .getElementById(
-        "generateBtn"
-    )
-    .onclick =
-    generateMatches;
-
-
-
-    document
-    .getElementById(
-        "shareBtn"
-    )
-    .onclick =
-    shareWhatsApp;
-
-
-
-    // terugknoppen
-
-    [
-        "backHome1",
-        "backHome2",
-        "backHome3",
-        "backHome4"
-    ]
-    .forEach(id=>{
-
-        const button =
-        document.getElementById(id);
-
-
-        if(button){
-
-            button.onclick =
-            ()=>{
-                showScreen(
-                    "homeScreen"
-                );
-            };
-
-        }
-
-    });
-
+    showPage("session");
 
 });
-// Service worker registreren voor app-functionaliteit
+
+
+// ---------- Service Worker ----------
 
 if ("serviceWorker" in navigator) {
 
-    window.addEventListener(
-        "load",
-        () => {
+    window.addEventListener("load", () => {
 
-            navigator.serviceWorker
-            .register("service-worker.js")
-            .then(() => {
+        navigator.serviceWorker.register("service-worker.js");
 
-                console.log(
-                    "DubbelMaker service worker actief"
-                );
-
-            })
-            .catch(error => {
-
-                console.log(
-                    "Service worker fout:",
-                    error
-                );
-
-            });
-
-        }
-    );
+    });
 
 }
